@@ -22,7 +22,7 @@ the Docker image, and runs the tests inside the container.
 
 ## Repository structure
 
-``` text
+```text
 Fitness-devops/
 ├── .github/
 │   └── workflows/
@@ -47,7 +47,7 @@ repository.
 
 1.  Clone the repository and enter the project directory:
 
-    ``` bash
+    ```bash
     git clone https://github.com/pallab017/Fitness-devops.git
     cd Fitness-devops
     ```
@@ -56,28 +56,28 @@ repository.
 
     **Linux/macOS:**
 
-    ``` bash
+    ```bash
     python3 -m venv .venv
     source .venv/bin/activate
     ```
 
     **Windows PowerShell:**
 
-    ``` powershell
+    ```powershell
     py -3.9 -m venv .venv
     .\.venv\Scripts\Activate.ps1
     ```
 
 3.  Install the application dependencies:
 
-    ``` bash
+    ```bash
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     ```
 
 4.  Start the application:
 
-    ``` bash
+    ```bash
     python app.py
     ```
 
@@ -92,7 +92,7 @@ Stop the application with `Ctrl+C`.
 Run the following commands from the project root with the virtual
 environment activated:
 
-``` bash
+```bash
 pip install pytest
 python -m pytest -v
 ```
@@ -105,7 +105,7 @@ You can also check the application endpoints in a browser or with `curl`
 while the app is running. The project has been checked with the
 following endpoints:
 
-``` bash
+```bash
 curl http://127.0.0.1:5000/health
 curl http://127.0.0.1:5000/programs
 ```
@@ -118,27 +118,27 @@ accordingly. The endpoint checks depend on the routes implemented in
 
 Build the image from the repository root:
 
-``` bash
+```bash
 docker build -t aceest-fitness:1.0 .
 ```
 
 Run the container and publish container port `5000` on local port
 `5000`:
 
-``` bash
+```bash
 docker run --rm -p 5000:5000 aceest-fitness:1.0
 ```
 
 In a separate terminal, verify the health and programs endpoints:
 
-``` bash
+```bash
 curl http://127.0.0.1:5000/health
 curl http://127.0.0.1:5000/programs
 ```
 
 To run the automated tests inside the built image:
 
-``` bash
+```bash
 docker run --rm --entrypoint python aceest-fitness:1.0 -m pytest -v
 ```
 
