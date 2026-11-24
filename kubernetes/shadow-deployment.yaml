@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-fitness-shadow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aceest-fitness-shadow
+  template:
+    metadata:
+      labels:
+        app: aceest-fitness-shadow
+    spec:
+      containers:
+      - name: fitness
+        image: pallab017/aceest-fitness:2
+        ports:
+        - containerPort: 5000
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aceest-fitness-shadow-service
+spec:
+  type: ClusterIP
+  selector:
+    app: aceest-fitness-shadow
+  ports:
+  - port: 5000
+    targetPort: 5000
